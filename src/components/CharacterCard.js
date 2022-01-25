@@ -1,30 +1,18 @@
-const CharacterCard = ({ eachCharacter }) => {
-  const translateSpecies = (species) => {
-    switch (species) {
-      case "human":
-        species = "Humano";
-        break;
-      case "half-giant":
-        species = "Medio gigante";
-        break;
-      case "werewolf":
-        species = "Hombre lobo";
-        break;
-      case "ghost":
-        species = "Fantasma";
-        break;
-      default:
-        species = "No conocida";
-    }
-    return species;
-  };
-  const checkImageUrl = (image) => (image === "" ? "https://via.placeholder.com/210x295/ffffff/666666/?text=HarryPotter" : image);
+import translateSpecies from "../services/translateSpecies";
+import checkImageUrl from "../services/checkImageUrl";
 
+const CharacterCard = ({ eachCharacter }) => {
   return (
-    <article>
-      <img src={checkImageUrl(eachCharacter.image)} alt={eachCharacter.name} />
-      <h3>{eachCharacter.name}</h3>
-      <p>{translateSpecies(eachCharacter.species)}</p>
+    <article className="character__preview">
+      <img
+        className="preview__image"
+        src={checkImageUrl(eachCharacter.image)}
+        alt={eachCharacter.name}
+      />
+      <div className="preview__text">
+        <h4>{eachCharacter.name}</h4>
+        <p>{translateSpecies(eachCharacter.species)}</p>
+      </div>
     </article>
   );
 };

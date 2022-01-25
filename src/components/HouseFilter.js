@@ -3,11 +3,12 @@ const HouseFilter = ({ houseFilter, updateFilter }) => {
     updateFilter({ key: ev.currentTarget.id, value: ev.currentTarget.value });
   };
   return (
-    <>
-      <label htmlFor="houseFilter">Selecciona la casa: </label>
+    <label htmlFor="houseFilter" className="form__label">
+      Selecciona la casa:
       <select
         name="houseFilter"
         id="houseFilter"
+        className="form__input select"
         value={houseFilter}
         onChange={handleChange}
       >
@@ -16,7 +17,7 @@ const HouseFilter = ({ houseFilter, updateFilter }) => {
         <option value="slytherin">Slytherin</option>
         <option value="hufflepuff">Hufflepuff</option>
       </select>
-    </>
+    </label>
   );
 };
 

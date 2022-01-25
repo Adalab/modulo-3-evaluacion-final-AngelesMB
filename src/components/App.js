@@ -1,4 +1,4 @@
-import "../styles/App.css";
+import "../styles/App.scss";
 import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import ls from "../services/localStorage";
@@ -55,10 +55,10 @@ function App() {
   // effect api
   useEffect(() => {
     // if (data.length === 0 || data[0].house !== houseFilter) {
-      // if (data.length === 0){
-      callToApi(URL, houseFilter).then((response) => {
-        setData(response);
-      });
+    // if (data.length === 0){
+    callToApi(URL, houseFilter).then((response) => {
+      setData(response);
+    });
     // }
   }, [houseFilter]);
 
@@ -92,10 +92,10 @@ function App() {
   return (
     <div>
       <Header />
-      <main>
+      <main className="main">
         <Switch>
           <Route exact path="/">
-            <form action="" onSubmit={(ev) => ev.preventDefault()}>
+            <form action="" className="main__form" onSubmit={(ev) => ev.preventDefault()}>
               <CharacterFilter
                 characterFilter={characterFilter}
                 updateFilter={updateFilter}
@@ -105,7 +105,7 @@ function App() {
                 updateFilter={updateFilter}
               />
             </form>
-            <ul>
+            <ul className="character__list">
               <CharacterList filteredData={filteredData} />
             </ul>
           </Route>

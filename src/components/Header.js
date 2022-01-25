@@ -1,7 +1,9 @@
+import logo from "../images/hp-logo.png";
+
 const Header = () => {
   return (
-    <header>
-      <h1>Harry Potter</h1>
+    <header className="header">
+      <img className="header__logo" src={logo} alt="Harry Potter logo" />
     </header>
   );
 };
