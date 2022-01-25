@@ -1,22 +1,19 @@
-const callToApi = (URL) => {
-  // const callToApi = (URL, searchValue) => {
-  return fetch(URL)
-      //   return fetch(`${URL}?search=${searchValue}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const cleanData = data.results.map((eachData) => {
-          return {
-            name: eachData.name.first + " " + eachData.name.last,
-            photo: eachData.picture.medium,
-            id: eachData.login.uuid,
-            city: eachData.location.city,
-            age: eachData.dob.age,
-            gender: eachData.gender,
-            email: eachData.email,
-          };
-        });
-        return cleanData;
-      })
+const callToApi = (URL, value) => {
+  return fetch(URL + value)
+    .then((response) => response.json())
+    .then((data) => {
+      const cleanData = data.map((eachData) => {
+        return {
+          name: eachData.name,
+          alive: eachData.alive,
+          gender: eachData.gender,
+          house: eachData.house,
+          species: eachData.species,
+          image: eachData.image,
+        };
+      });
+      return cleanData;
+    });
 };
 
 export default callToApi;
