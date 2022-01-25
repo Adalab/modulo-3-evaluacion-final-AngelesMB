@@ -12,19 +12,6 @@ const set = (key, value) => {
   localStorage.setItem(key, localStorageData);
 };
 
-const remove = (key) => {
-  localStorage.removeItem(key);
-};
-
-const clear = () => {
-  localStorage.clear();
-};
-
-const objectToExport = {
-  get: get,
-  set: set,
-  remove: remove,
-  clear: clear,
-};
+const objectToExport = { get, set };
 
 export default objectToExport;

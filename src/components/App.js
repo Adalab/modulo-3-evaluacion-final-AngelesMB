@@ -1,7 +1,7 @@
 import "../styles/App.css";
 import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-// import ls from "../services/localStorage";
+import ls from "../services/localStorage";
 import callToApi from "../services/api";
 import CharacterFilter from "./CharacterFilter";
 import HouseFilter from "./HouseFilter";
@@ -13,25 +13,6 @@ import Header from "./Header";
 // import PropTypes from 'prop-types';
 
 function App() {
-  // //LOCAL STORAGE
-  // const [name, setName] = useState(ls.get("name", ""));
-  // const [email, setEmail] = useState(ls.get("email", ""));
-
-  // useEffect(() => {
-  //   ls.set("name", name);
-  //   ls.set("email", email);
-  // }, [name, email]);
-
-  // // LOCAL STORAGE OBJETO
-  // // const [name, setName] = useState(ls.get("data", {}).name || "");
-  // // const [email, setEmail] = useState(ls.get("data", {}).email || "");
-  // const [data, setData] = useState(
-  //   ls.get("data", { name: "", email: "" })
-  // );
-  // useEffect(() => {
-  //   ls.set("data", data);
-  // }, [data]);
-
   // DEFAULT PROPS
   // Input.defaultProps = {
   //   inputType: 'text'
@@ -59,26 +40,26 @@ function App() {
   //   myArrProp: PropTypes.arrayOf(PropTypes.number),
   // };
 
-  // ROUTES Y LINKS
-  // <Route path="/contacto">
-  //   <h2>
-  //     Este título solo aparece en contacto
-  //   </h2>
-  // </Route>;
-  // <Link to="/contacto">Ir a contacto</Link>
-
   // states
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(ls.get("data", []));
   const [characterFilter, setCharacterFilter] = useState("");
   const [houseFilter, setHouseFilter] = useState("gryffindor");
 
   const URL = "http://hp-api.herokuapp.com/api/characters/house/";
 
+  // effect ls
+  useEffect(() => {
+    ls.set("data", data);
+  }, [data]);
+
   // effect api
   useEffect(() => {
-    callToApi(URL, houseFilter).then((response) => {
-      setData(response);
-    });
+    // if (data.length === 0 || data[0].house !== houseFilter) {
+      // if (data.length === 0){
+      callToApi(URL, houseFilter).then((response) => {
+        setData(response);
+      });
+    // }
   }, [houseFilter]);
 
   const updateFilter = (obj) => {
