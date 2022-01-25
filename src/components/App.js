@@ -1,10 +1,15 @@
 import "../styles/App.css";
 import { useEffect, useState } from "react";
+import { Route, Switch } from "react-router-dom";
 // import ls from "../services/localStorage";
 import callToApi from "../services/api";
 import CharacterFilter from "./CharacterFilter";
 import HouseFilter from "./HouseFilter";
 import CharacterList from "./CharacterList";
+import CharacterDetail from "./CharacterDetail";
+import ErrorDetail from "./ErrorDetail";
+import Header from "./Header";
+
 // import PropTypes from 'prop-types';
 
 function App() {
@@ -90,22 +95,45 @@ function App() {
       .includes(characterFilter.toLowerCase());
   });
 
+  const renderCharacterDetail = ({ match }) => {
+    const routeId = match.params.characterId;
+    const foundCharacter = data.find(
+      (eachCharacter) => eachCharacter.id === parseInt(routeId)
+    );
+    // si es undefined, la ruta no existe, return componente de error
+    if (foundCharacter === undefined) {
+      return <ErrorDetail />;
+    } else {
+      return <CharacterDetail selectedCharacter={foundCharacter} />;
+    }
+  };
+
   return (
     <div>
-      <header>
-        <h1>Harry Potter</h1>
-      </header>
+      <Header />
       <main>
-        <form action="" onSubmit={(ev) => ev.preventDefault()}>
-          <CharacterFilter
-            characterFilter={characterFilter}
-            updateFilter={updateFilter}
-          />
-          <HouseFilter houseFilter={houseFilter} updateFilter={updateFilter} />
-        </form>
-        <ul>
-          <CharacterList filteredData={filteredData} />
-        </ul>
+        <Switch>
+          <Route exact path="/">
+            <form action="" onSubmit={(ev) => ev.preventDefault()}>
+              <CharacterFilter
+                characterFilter={characterFilter}
+                updateFilter={updateFilter}
+              />
+              <HouseFilter
+                houseFilter={houseFilter}
+                updateFilter={updateFilter}
+              />
+            </form>
+            <ul>
+              <CharacterList filteredData={filteredData} />
+            </ul>
+          </Route>
+          <Route
+            exact
+            path="/character/:characterId"
+            render={renderCharacterDetail}
+          ></Route>
+        </Switch>
       </main>
     </div>
   );

@@ -1,5 +1,5 @@
-const CharacterCard = () => {
+const CharacterCard = ({ eachCharacter }) => {
+  return eachCharacter.name;
+};
 
-}
-
-export default CharacterCard
+export default CharacterCard;
