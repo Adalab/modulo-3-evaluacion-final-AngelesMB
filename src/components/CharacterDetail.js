@@ -4,6 +4,25 @@ import checkImageUrl from "../services/checkImageUrl";
 import translateAncestries from "../services/translateAncestries";
 
 const CharacterDetail = ({ selectedCharacter }) => {
+  const defineAvatar = (species) => {
+    switch (species) {
+      case "human":
+        species = "fas fa-user-alt";
+        break;
+      case "half-giant":
+        species = "fas fa-star-half-alt";
+        break;
+      case "werewolf":
+        species = "fab fa-wolf-pack-battalion";
+        break;
+      case "ghost":
+        species = "fas fa-ghost";
+        break;
+      default:
+        species = "No conocida";
+    }
+    return species;
+  };
   return (
     <>
       <article className="character__detail">
@@ -14,16 +33,30 @@ const CharacterDetail = ({ selectedCharacter }) => {
         />
         <div>
           <span className="character__detail--text">
-            {selectedCharacter.name}
+            {selectedCharacter.name.toUpperCase()}
+          </span>
+          <span className="character__detail--text">
+            Estado: {selectedCharacter.alive ? "con vida" : "sin vida"}
+            <i
+              className={`fas fa-${
+                selectedCharacter.alive ? "heartbeat" : "skull"
+              } character__detail--iconSM`}
+            ></i>
           </span>
           <span className="character__detail--text">
             Ascendencia: {translateAncestries(selectedCharacter.ancestry)}
           </span>
           <span className="character__detail--text">
             Especie: {translateSpecies(selectedCharacter.species)}
+            <i
+              className={`${defineAvatar(
+                selectedCharacter.species
+              )} character__detail--iconSM`}
+            ></i>
           </span>
           <span className="character__detail--text">
-            Género: {selectedCharacter.gender}
+            Género:{" "}
+            {selectedCharacter.gender === "female" ? "Femenino" : "Masculino"}
           </span>
           <span className="character__detail--text">
             Casa: {selectedCharacter.house}
