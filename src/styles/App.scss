@@ -8,8 +8,9 @@
 a {
   color: inherit;
 }
-select:focus, input:focus{
-    outline: none;
+select:focus,
+input:focus {
+  outline: none;
 }
 
 body {
@@ -73,15 +74,21 @@ body {
   align-items: center;
   justify-content: center;
 }
-.character__preview {
-  width: 275px;
-  height: 350px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  margin: 5px;
+.character {
+  &__preview {
+    width: 275px;
+    height: 350px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px;
+  }
+  &__errorMessage {
+    margin-top: 30px;
+    font-size: 18px;
+  }
 }
 .preview {
   &__image {

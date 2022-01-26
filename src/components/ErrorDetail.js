@@ -5,7 +5,7 @@ const ErrorDetail = () => {
     <>
       <Link to="/">Volver al inicio</Link>
       <h2>Detalle del usuario:</h2>
-      <p>No existen personajes.</p>
+      <p>El personaje que buscas no existe.</p>
     </>
   );
 };

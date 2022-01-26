@@ -13,7 +13,32 @@ import Header from "./Header";
 // import PropTypes from 'prop-types';
 
 function App() {
+  // DEFAULT PROPS
+  // Input.defaultProps = {
+  //   inputType: 'text'
+  // };
 
+  // PROP TYPES
+  // Input.propTypes = {
+  //   id: PropTypes.string,
+  //   labelText: PropTypes.string.isRequired,
+  //   inputType: PropTypes.string,
+  //   inputName: PropTypes.string.isRequired,
+  //   inputPlaceholder: PropTypes.string,
+  //   inputValue: PropTypes.string,
+  //   handleChange: PropTypes.func.isRequired,
+  // };
+  // PROP TYPES para OBJETOS
+  // MyComponent.propTypes = {
+  //   data: PropTypes.shape({
+  //     title: PropTypes.string,
+  //     id: PropTypes.string.isRequired,
+  //   }),
+  // };
+  // PROP TYPES para ARRAYS
+  // MyComponent.propTypes = {
+  //   myArrProp: PropTypes.arrayOf(PropTypes.number),
+  // };
 
   // states
   const [data, setData] = useState(ls.get("data", []));
@@ -22,7 +47,7 @@ function App() {
     ls.get("houseFilter", "gryffindor")
   );
 
-  const URL = "http://hp-api.herokuapp.com/api/characters/house/";
+  const URL = "https://hp-api.herokuapp.com/api/characters/house/";
 
   // effect ls
   useEffect(() => {
@@ -47,11 +72,13 @@ function App() {
     }
   };
 
-  const filteredData = data.filter((eachCharacter) => {
-    return eachCharacter.name
-      .toLowerCase()
-      .includes(characterFilter.toLowerCase());
-  });
+  const filteredData = data
+    .filter((eachCharacter) => {
+      return eachCharacter.name
+        .toLowerCase()
+        .includes(characterFilter.toLowerCase());
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   const renderCharacterDetail = ({ match }) => {
     const routeId = match.params.characterId;
