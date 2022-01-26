@@ -10,6 +10,7 @@ const callToApi = (URL, value) => {
           house: eachData.house,
           species: eachData.species,
           image: eachData.image,
+          ancestry: eachData.ancestry,
           id: Math.floor(Math.random() * 10000),
         };
       });

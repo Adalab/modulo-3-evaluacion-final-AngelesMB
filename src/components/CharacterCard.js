@@ -10,8 +10,8 @@ const CharacterCard = ({ eachCharacter }) => {
         alt={eachCharacter.name}
       />
       <div className="preview__text">
-        <h4>{eachCharacter.name}</h4>
-        <p>{translateSpecies(eachCharacter.species)}</p>
+        <h4 className="preview__title">{eachCharacter.name}</h4>
+        <p className="preview__species">{translateSpecies(eachCharacter.species)}</p>
       </div>
     </article>
   );

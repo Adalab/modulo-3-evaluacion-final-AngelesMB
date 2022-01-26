@@ -1,7 +1,7 @@
 const translateSpecies = (species) => {
   switch (species) {
     case "human":
-      species = "Humano";
+      species = "Persona";
       break;
     case "half-giant":
       species = "Medio gigante";

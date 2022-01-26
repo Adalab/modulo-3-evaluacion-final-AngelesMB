@@ -5,10 +5,12 @@ import ls from "../services/localStorage";
 import callToApi from "../services/api";
 import CharacterFilter from "./CharacterFilter";
 import HouseFilter from "./HouseFilter";
+import AncestryFilter from "./AncestryFilter";
 import CharacterList from "./CharacterList";
 import CharacterDetail from "./CharacterDetail";
 import ErrorDetail from "./ErrorDetail";
 import Header from "./Header";
+import Button from "./Button";
 
 // import PropTypes from 'prop-types';
 
@@ -42,9 +44,14 @@ function App() {
 
   // states
   const [data, setData] = useState(ls.get("data", []));
-  const [characterFilter, setCharacterFilter] = useState("");
+  const [characterFilter, setCharacterFilter] = useState(
+    ls.get("characterFilter", "")
+  );
   const [houseFilter, setHouseFilter] = useState(
     ls.get("houseFilter", "gryffindor")
+  );
+  const [ancestryFilter, setAncestryFilter] = useState(
+    ls.get("ancestryFilter", [])
   );
 
   const URL = "https://hp-api.herokuapp.com/api/characters/house/";
@@ -53,7 +60,9 @@ function App() {
   useEffect(() => {
     ls.set("data", data);
     ls.set("houseFilter", houseFilter);
-  }, [data, houseFilter]);
+    ls.set("characterFilter", characterFilter);
+    ls.set("ancestryFilter", ancestryFilter);
+  }, [data, houseFilter, characterFilter, ancestryFilter]);
 
   // effect api
   useEffect(() => {
@@ -67,8 +76,17 @@ function App() {
   const updateFilter = (obj) => {
     if (obj.key === "characterFilter") {
       setCharacterFilter(obj.value);
-    } else {
+    } else if (obj.key === "houseFilter") {
       setHouseFilter(obj.value);
+    } else {
+      if (ancestryFilter.includes(obj.value)) {
+        const cleanFilteredAncestries = ancestryFilter.filter(
+          (eachAncestry) => eachAncestry !== obj.value
+        );
+        setAncestryFilter(cleanFilteredAncestries);
+      } else {
+        setAncestryFilter([...ancestryFilter, obj.value]);
+      }
     }
   };
 
@@ -78,7 +96,27 @@ function App() {
         .toLowerCase()
         .includes(characterFilter.toLowerCase());
     })
+    .filter((eachCharacter) => {
+      if (ancestryFilter.length === 0) {
+        return eachCharacter;
+      } else {
+        return ancestryFilter.includes(eachCharacter.ancestry);
+      }
+    })
     .sort((a, b) => a.name.localeCompare(b.name));
+
+  const getAncestries = () => {
+    const ancestries = data.map((eachCharacter) => eachCharacter.ancestry);
+    const uniqueAncestriesObj = new Set(ancestries);
+    const uniqueAncestriesArr = [...uniqueAncestriesObj];
+    return uniqueAncestriesArr;
+  };
+
+  const resetFilters = () => {
+    setCharacterFilter("");
+    setHouseFilter("gryffindor");
+    setAncestryFilter([]);
+  };
 
   const renderCharacterDetail = ({ match }) => {
     const routeId = match.params.characterId;
@@ -104,14 +142,24 @@ function App() {
               className="main__form"
               onSubmit={(ev) => ev.preventDefault()}
             >
-              <CharacterFilter
-                characterFilter={characterFilter}
-                updateFilter={updateFilter}
-              />
-              <HouseFilter
-                houseFilter={houseFilter}
-                updateFilter={updateFilter}
-              />
+              <div>
+                <CharacterFilter
+                  characterFilter={characterFilter}
+                  updateFilter={updateFilter}
+                />
+                <HouseFilter
+                  houseFilter={houseFilter}
+                  updateFilter={updateFilter}
+                />
+                <Button resetFilters={resetFilters} />
+              </div>
+              <div className="form__ancestry--container">
+                <AncestryFilter
+                  getAncestries={getAncestries()}
+                  updateFilter={updateFilter}
+                  ancestryFilter={ancestryFilter}
+                />
+              </div>
             </form>
             <ul className="character__list">
               <CharacterList filteredData={filteredData} />

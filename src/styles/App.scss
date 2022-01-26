@@ -36,14 +36,19 @@ body {
     border: 2px solid white;
     border-radius: 5px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 80px;
+    height: 100px;
+    margin-bottom: 30px;
   }
 }
 .form {
   &__label {
     font-size: 18px;
+    &.ancestry {
+      margin: 0 10px;
+    }
   }
   &__input {
     margin: 10px;
@@ -65,6 +70,12 @@ body {
     color: white;
     padding: 5px;
   }
+  &__checkbox {
+    margin: 0px 5px;
+  }
+  &__ancestry--container {
+    display: flex;
+  }
 }
 
 .character__list {
@@ -77,13 +88,18 @@ body {
 .character {
   &__preview {
     width: 275px;
-    height: 350px;
+    height: 375px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    margin: 5px;
+    margin: 10px 5px;
+    &:hover {
+      transform: scale(1.01);
+      border: 2px solid #005cc8;
+      border-radius: 5px;
+    }
   }
   &__errorMessage {
     margin-top: 30px;
@@ -96,6 +112,7 @@ body {
     height: 275px;
     border-radius: 5px;
     object-fit: cover;
+    margin-top: 37px;
   }
   &__text {
     width: 220px;
@@ -105,5 +122,30 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+  }
+  &__title {
+    height: 15px;
+    margin-top: 10px;
+  }
+  &__species {
+    height: 15px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+}
+.button {
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #005cc8;
+  font-family: inherit;
+  font-size: 16px;
+  height: 35px;
+  width: 130px;
+  padding: 5px;
+  border: none;
+  color: white;
+  transition: all 0.1s linear;
+  &:hover {
+    background-color: #297edf;
   }
 }
