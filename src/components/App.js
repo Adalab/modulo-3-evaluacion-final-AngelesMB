@@ -11,6 +11,7 @@ import CharacterDetail from "./CharacterDetail";
 import ErrorDetail from "./ErrorDetail";
 import Header from "./Header";
 import Button from "./Button";
+import Footer from "./Footer";
 
 // import PropTypes from 'prop-types';
 
@@ -163,6 +164,7 @@ function App() {
             </form>
             <ul className="character__list">
               <CharacterList filteredData={filteredData} />
+              <Footer />
             </ul>
           </Route>
           <Route
