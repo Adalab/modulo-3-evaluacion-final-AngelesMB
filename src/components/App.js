@@ -16,8 +16,6 @@ import Footer from "./Footer";
 // import PropTypes from 'prop-types';
 
 function App() {
-
-
   // states
   const [data, setData] = useState(ls.get("data", []));
   const [characterFilter, setCharacterFilter] = useState(
@@ -111,8 +109,7 @@ function App() {
     <div>
       <Header />
       <main className="main">
-        <Switch>
-          <Route exact path="/">
+      {/* <Route exact path="/"> */}
             <form
               action=""
               className="main__form"
@@ -141,7 +138,8 @@ function App() {
               <CharacterList filteredData={filteredData} />
               <Footer />
             </ul>
-          </Route>
+          {/* </Route> */}
+        <Switch>
           <Route
             exact
             path="/character/:characterId"

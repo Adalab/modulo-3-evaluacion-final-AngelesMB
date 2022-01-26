@@ -2,11 +2,21 @@ import { Link } from "react-router-dom";
 
 const ErrorDetail = () => {
   return (
-    <>
-      <Link to="/">Volver al inicio</Link>
-      <h2>Detalle del usuario:</h2>
-      <p>El personaje que buscas no existe.</p>
-    </>
+    <div className="modal">
+      <article className="character__detail">
+        <div>
+          <span className="character__detail--text">
+            Personaje no encontrado.
+          </span>
+        </div>
+      </article>
+      <div className="character__detail--back">
+        <Link to="/">
+          <i className="fas fa-arrow-left character__detail--icon"></i>
+        </Link>
+        <span className="character__detail--backText">Volver al listado</span>
+      </div>
+    </div>
   );
 };
 

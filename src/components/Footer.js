@@ -11,9 +11,9 @@ const Footer = () => {
     scrollToTop();
   };
   return (
-    <footer class="footer">
+    <footer className="footer">
       {/* <Link to="/"> */}
-      <i class="fas fa-arrow-up footer--icon" onClick={handleClick}></i>
+      <i className="fas fa-arrow-up footer--icon" onClick={handleClick}></i>
       {/* </Link> */}
     </footer>
   );

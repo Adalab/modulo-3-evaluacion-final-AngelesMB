@@ -24,52 +24,52 @@ const CharacterDetail = ({ selectedCharacter }) => {
     return species;
   };
   return (
-    <>
-      <article className="character__detail">
-        <img
-          className="preview__image"
-          src={checkImageUrl(selectedCharacter.image)}
-          alt={selectedCharacter.name}
-        />
-        <div>
-          <span className="character__detail--text">
-            {selectedCharacter.name.toUpperCase()}
-          </span>
-          <span className="character__detail--text">
-            Estado: {selectedCharacter.alive ? "con vida" : "sin vida"}
-            <i
-              className={`fas fa-${
-                selectedCharacter.alive ? "heartbeat" : "skull"
-              } character__detail--iconSM`}
-            ></i>
-          </span>
-          <span className="character__detail--text">
-            Ascendencia: {translateAncestries(selectedCharacter.ancestry)}
-          </span>
-          <span className="character__detail--text">
-            Especie: {translateSpecies(selectedCharacter.species)}
-            <i
-              className={`${defineAvatar(
-                selectedCharacter.species
-              )} character__detail--iconSM`}
-            ></i>
-          </span>
-          <span className="character__detail--text">
-            Género:{" "}
-            {selectedCharacter.gender === "female" ? "Femenino" : "Masculino"}
-          </span>
-          <span className="character__detail--text">
-            Casa: {selectedCharacter.house}
-          </span>
+      <div className="modal">
+        <article className="character__detail">
+          <img
+            className="preview__image"
+            src={checkImageUrl(selectedCharacter.image)}
+            alt={selectedCharacter.name}
+          />
+          <div>
+            <span className="character__detail--text">
+              {selectedCharacter.name.toUpperCase()}
+            </span>
+            <span className="character__detail--text">
+              Estado: {selectedCharacter.alive ? "con vida" : "sin vida"}
+              <i
+                className={`fas fa-${
+                  selectedCharacter.alive ? "heartbeat" : "skull"
+                } character__detail--iconSM`}
+              ></i>
+            </span>
+            <span className="character__detail--text">
+              Ascendencia: {translateAncestries(selectedCharacter.ancestry)}
+            </span>
+            <span className="character__detail--text">
+              Especie: {translateSpecies(selectedCharacter.species)}
+              <i
+                className={`${defineAvatar(
+                  selectedCharacter.species
+                )} character__detail--iconSM`}
+              ></i>
+            </span>
+            <span className="character__detail--text">
+              Género:{" "}
+              {selectedCharacter.gender === "female" ? "Femenino" : "Masculino"}
+            </span>
+            <span className="character__detail--text">
+              Casa: {selectedCharacter.house}
+            </span>
+          </div>
+        </article>
+        <div className="character__detail--back">
+          <Link to="/">
+            <i className="fas fa-arrow-left character__detail--icon"></i>
+          </Link>
+          <span className="character__detail--backText">Volver al listado</span>
         </div>
-      </article>
-      <div className="character__detail--back">
-        <Link to="/">
-          <i class="fas fa-arrow-left character__detail--icon"></i>
-        </Link>
-        <span className="character__detail--backText">Volver al inicio</span>
       </div>
-    </>
   );
 };
 
