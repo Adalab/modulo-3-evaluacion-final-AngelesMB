@@ -16,32 +16,7 @@ import Footer from "./Footer";
 // import PropTypes from 'prop-types';
 
 function App() {
-  // DEFAULT PROPS
-  // Input.defaultProps = {
-  //   inputType: 'text'
-  // };
 
-  // PROP TYPES
-  // Input.propTypes = {
-  //   id: PropTypes.string,
-  //   labelText: PropTypes.string.isRequired,
-  //   inputType: PropTypes.string,
-  //   inputName: PropTypes.string.isRequired,
-  //   inputPlaceholder: PropTypes.string,
-  //   inputValue: PropTypes.string,
-  //   handleChange: PropTypes.func.isRequired,
-  // };
-  // PROP TYPES para OBJETOS
-  // MyComponent.propTypes = {
-  //   data: PropTypes.shape({
-  //     title: PropTypes.string,
-  //     id: PropTypes.string.isRequired,
-  //   }),
-  // };
-  // PROP TYPES para ARRAYS
-  // MyComponent.propTypes = {
-  //   myArrProp: PropTypes.arrayOf(PropTypes.number),
-  // };
 
   // states
   const [data, setData] = useState(ls.get("data", []));
