@@ -104,3 +104,12 @@ Un extra interesante sería que añadáis más filtros para filtrar por ejemplo 
 **11. BONUS: Boton Reset**
 
 Un extra interesante sería añadir un boton de reset para que la página vuelva a su listado principal
+
+**Instalación**
+
+Instala el proyecto con npm
+
+```bash
+  npm install
+  npm start
+```
