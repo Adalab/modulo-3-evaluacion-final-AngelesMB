@@ -41,6 +41,7 @@ Nota: en principio no es necesario tener en cuenta si las letras están en mayú
 la búsqueda, pero si queréis añadir esta mejora pues genial.
 
 **3. Filtrado por casa**
+
 Ahora que ya tenemos el listado de personajes en pantalla, y filtrado por nombre la siguiente parte consiste
 en poder buscarlos por casa. Para eso, añadimos un select a la interfaz, de forma que al seleccionar una
 casa queden en la interfaz solo los personajes cuya casa es la seleccionada.
