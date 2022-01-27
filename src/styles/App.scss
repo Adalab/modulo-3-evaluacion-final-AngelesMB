@@ -16,43 +16,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   @include desktop {
     width: 1250px;
-  }
-  &__form {
-    width: 90%;
-    height: 280px;
-    border: 2px solid white;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 5px;
-    @include tablet {
-      height: 250px;
-    }
-    @include desktop {
-      width: 1250px;
-      height: 140px;
-      margin-bottom: 30px;
-    }
-    &--ancestry {
-      display: flex;
-      flex-direction: column;
-      @include tablet {
-        flex-direction: row;
-      }
-    }
-    &--name {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    @include desktop {
-      flex-direction: row;
-    }
-    }
   }
   &__character--list {
     color: white;
@@ -65,34 +30,4 @@ body {
       flex-direction: row;
     }
   }
-}
-
-.list__message--empty {
-  margin-top: 30px;
-  font-size: 14px;
-  @include tablet {
-    margin-top: 50px;
-    font-size: 18px;
-  }
-}
-
-.preview__image {
-  width: 200px;
-  height: 275px;
-  border-radius: 5px;
-  object-fit: cover;
-  margin-top: 37px;
-}
-
-.modal {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.91);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }

@@ -1,0 +1,10 @@
+@import "core/mixins.scss";
+
+.list__message--empty {
+  margin-top: 30px;
+  font-size: 14px;
+  @include tablet {
+    margin-top: 50px;
+    font-size: 18px;
+  }
+}

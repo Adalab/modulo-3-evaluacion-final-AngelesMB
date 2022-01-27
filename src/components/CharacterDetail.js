@@ -1,3 +1,5 @@
+import "../styles/core/modal.scss";
+import "../styles/core/preview_image.scss";
 import "../styles/CharacterDetail.scss";
 import { Link } from "react-router-dom";
 import translateSpecies from "../services/translateSpecies";

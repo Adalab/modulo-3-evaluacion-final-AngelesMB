@@ -1,3 +1,5 @@
+import "../../styles/Form.scss";
+
 const HouseFilter = ({ houseFilter, updateFilter }) => {
   const handleChange = (ev) => {
     updateFilter({ key: ev.currentTarget.id, value: ev.currentTarget.value });

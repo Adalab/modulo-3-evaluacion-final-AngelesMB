@@ -1,3 +1,4 @@
+import "../../styles/Form.scss";
 import CharacterFilter from "./CharacterFilter";
 import HouseFilter from "./HouseFilter";
 import AncestryFilter from "./AncestryFilter";

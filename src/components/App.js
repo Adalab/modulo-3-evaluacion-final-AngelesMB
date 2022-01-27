@@ -3,14 +3,12 @@ import { useEffect, useState } from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import ls from "../services/localStorage";
 import callToApi from "../services/api";
+import Header from "./Header";
+import Form from "./Form/Form";
 import CharacterList from "./List/CharacterList";
 import CharacterDetail from "./CharacterDetail";
 import ErrorDetail from "./ErrorDetail";
-import Header from "./Header";
 import Footer from "./Footer";
-import Form from "./Form/Form";
-
-// import PropTypes from 'prop-types';
 
 function App() {
   // states
@@ -119,7 +117,7 @@ function App() {
       );
     return characterDetailHtml;
   };
-  
+
   return (
     <div>
       <Header />

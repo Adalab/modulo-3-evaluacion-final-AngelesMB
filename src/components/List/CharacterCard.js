@@ -1,3 +1,4 @@
+import "../../styles/core/preview_image.scss";
 import "../../styles/CharacterCard.scss";
 import translateSpecies from "../../services/translateSpecies";
 import checkImageUrl from "../../services/checkImageUrl";

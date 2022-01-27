@@ -1,4 +1,3 @@
-import "../styles/core/mixins.scss";
 import "../styles/Header.scss";
 import logo from "../images/hp-logo.png";
 

@@ -1,4 +1,5 @@
-// import "../styles/CharacterDetail.scss";
+import "../styles/core/modal.scss";
+import "../styles/CharacterDetail.scss";
 import { Link } from "react-router-dom";
 
 const ErrorDetail = () => {
