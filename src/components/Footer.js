@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import "../styles/Footer.scss"
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -12,9 +12,7 @@ const Footer = () => {
   };
   return (
     <footer className="footer">
-      {/* <Link to="/"> */}
       <i className="fas fa-arrow-up footer--icon" onClick={handleClick}></i>
-      {/* </Link> */}
     </footer>
   );
 };

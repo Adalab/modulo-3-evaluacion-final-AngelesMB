@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import ls from "../services/localStorage";
 import callToApi from "../services/api";
-import CharacterFilter from "./CharacterFilter";
-import HouseFilter from "./HouseFilter";
-import AncestryFilter from "./AncestryFilter";
-import CharacterList from "./CharacterList";
+import CharacterFilter from "./Form/CharacterFilter";
+import HouseFilter from "./Form/HouseFilter";
+import AncestryFilter from "./Form/AncestryFilter";
+import CharacterList from "./List/CharacterList";
 import CharacterDetail from "./CharacterDetail";
 import ErrorDetail from "./ErrorDetail";
 import Header from "./Header";
-import Button from "./Button";
+import Button from "./Form/Button";
 import Footer from "./Footer";
 
 // import PropTypes from 'prop-types';
@@ -27,6 +27,7 @@ function App() {
   const [ancestryFilter, setAncestryFilter] = useState(
     ls.get("ancestryFilter", [])
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   const URL = "https://hp-api.herokuapp.com/api/characters/house/";
 
@@ -41,8 +42,10 @@ function App() {
   // effect api
   useEffect(() => {
     if (data.length === 0 || data[0].house.toLowerCase() !== houseFilter) {
+      setIsLoading(true);
       callToApi(URL, houseFilter).then((response) => {
         setData(response);
+        setIsLoading(false);
       });
     }
   }, [houseFilter]);
@@ -109,36 +112,36 @@ function App() {
     <div>
       <Header />
       <main className="main">
-      {/* <Route exact path="/"> */}
-            <form
-              action=""
-              className="main__form"
-              onSubmit={(ev) => ev.preventDefault()}
-            >
-              <div>
-                <CharacterFilter
-                  characterFilter={characterFilter}
-                  updateFilter={updateFilter}
-                />
-                <HouseFilter
-                  houseFilter={houseFilter}
-                  updateFilter={updateFilter}
-                />
-                <Button resetFilters={resetFilters} />
-              </div>
-              <div className="form__ancestry--container">
-                <AncestryFilter
-                  getAncestries={getAncestries()}
-                  updateFilter={updateFilter}
-                  ancestryFilter={ancestryFilter}
-                />
-              </div>
-            </form>
-            <ul className="character__list">
-              <CharacterList filteredData={filteredData} />
-              <Footer />
-            </ul>
-          {/* </Route> */}
+        {/* <Route exact path="/"> */}
+        <form
+          action=""
+          className="main__form"
+          onSubmit={(ev) => ev.preventDefault()}
+        >
+          <div className="main__form--name">
+            <CharacterFilter
+              characterFilter={characterFilter}
+              updateFilter={updateFilter}
+            />
+            <HouseFilter
+              houseFilter={houseFilter}
+              updateFilter={updateFilter}
+            />
+            <Button resetFilters={resetFilters} />
+          </div>
+          <div className="main__form--ancestry">
+            <AncestryFilter
+              getAncestries={getAncestries()}
+              updateFilter={updateFilter}
+              ancestryFilter={ancestryFilter}
+            />
+          </div>
+        </form>
+        <ul className="main__character--list">
+          <CharacterList isLoading={isLoading} filteredData={filteredData} />
+          <Footer />
+        </ul>
+        {/* </Route> */}
         <Switch>
           <Route
             exact

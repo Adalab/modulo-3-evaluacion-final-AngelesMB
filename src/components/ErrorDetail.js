@@ -1,3 +1,4 @@
+// import "../styles/CharacterDetail.scss";
 import { Link } from "react-router-dom";
 
 const ErrorDetail = () => {

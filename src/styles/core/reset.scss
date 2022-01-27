@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+}
+select:focus,
+input:focus {
+  outline: none;
+}

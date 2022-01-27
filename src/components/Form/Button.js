@@ -1,3 +1,5 @@
+import "../../styles/Button.scss";
+
 const Button = ({ resetFilters }) => {
   const handleButtonClick = (ev) => {
     resetFilters();

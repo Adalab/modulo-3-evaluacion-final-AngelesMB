@@ -1,3 +1,4 @@
+import "../styles/CharacterDetail.scss"
 import { Link } from "react-router-dom";
 import translateSpecies from "../services/translateSpecies";
 import checkImageUrl from "../services/checkImageUrl";
@@ -30,6 +31,7 @@ const CharacterDetail = ({ selectedCharacter }) => {
             className="preview__image"
             src={checkImageUrl(selectedCharacter.image)}
             alt={selectedCharacter.name}
+            title={selectedCharacter.name}
           />
           <div>
             <span className="character__detail--text">

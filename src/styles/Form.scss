@@ -1,0 +1,61 @@
+@import "core/variables.scss";
+
+.form {
+  &__label {
+    font-size: 14px;
+    @include tablet {
+      font-size: 18px;
+    }
+    &.ancestry {
+      margin: 5px 0 5px 10px;
+      @include tablet {
+        margin: 0 10px;
+      }
+    }
+  }
+  &__input {
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 260px;
+    font-family: rubik;
+    padding: 5px;
+    border: none;
+    background-color: white;
+    color: black;
+    font-family: "Roboto", sans-serif;
+    @include tablet {
+      width: 400px;
+      font-size: 18px;
+    }
+
+    @include desktop {
+      width: 350px;
+    }
+    &.select {
+      width: 175px;
+
+      @include tablet {
+        width: 280px;
+      }
+      @include desktop {
+        width: 175px;
+      }
+    }
+  }
+  &__searchIcon {
+    font-size: 22px;
+    color: white;
+    padding: 5px;
+  }
+  &__checkbox {
+    margin: 0px 5px;
+    &--container {
+      display: flex;
+      flex-direction: column;
+      @include tablet {
+        flex-direction: row;
+      }
+    }
+  }
+}

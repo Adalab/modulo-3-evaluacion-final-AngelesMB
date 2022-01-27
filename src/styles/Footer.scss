@@ -1,0 +1,40 @@
+@import "core/variables.scss";
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  &--icon {
+    cursor: pointer;
+    position: fixed;
+    right: 4%;
+    bottom: 2%;
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    font-size: 24px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: black;
+    transition: all 0.2s linear;
+    @include tablet {
+      right: 15px;
+      bottom: 15px;
+    }
+    @include desktop {
+      right: 4%;
+      bottom: 2%;
+    }
+    @include xl {
+      right: 21.5%;
+    }
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

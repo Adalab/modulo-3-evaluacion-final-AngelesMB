@@ -1,4 +1,5 @@
-import translateAncestries from "../services/translateAncestries";
+import "../../styles/Form.scss";
+import translateAncestries from "../../services/translateAncestries";
 
 const AncestryFilter = ({ getAncestries, updateFilter, ancestryFilter }) => {
   const handleChange = (ev) => {
@@ -7,7 +8,7 @@ const AncestryFilter = ({ getAncestries, updateFilter, ancestryFilter }) => {
   const ancestryHtml = getAncestries.map((eachAncestry, index) => {
     return (
       <label
-        htmlFor={eachAncestry}
+        htmlFor={eachAncestry !== "" ? eachAncestry : "unknown"}
         key={index}
         className="form__label ancestry"
       >
@@ -15,7 +16,7 @@ const AncestryFilter = ({ getAncestries, updateFilter, ancestryFilter }) => {
           className="form__checkbox"
           type="checkbox"
           name="ancestryFilter"
-          id={eachAncestry}
+          id={eachAncestry !== "" ? eachAncestry : "unknown"}
           value={eachAncestry}
           checked={ancestryFilter.includes(eachAncestry) ? true : false}
           onChange={handleChange}
@@ -29,7 +30,7 @@ const AncestryFilter = ({ getAncestries, updateFilter, ancestryFilter }) => {
       <label htmlFor="ancestryFilter" className="form__label ancestry">
         Ascendencia:{" "}
       </label>
-      <ul>{ancestryHtml}</ul>
+      <ul className="form__checkbox--container">{ancestryHtml}</ul>
     </>
   );
 };
