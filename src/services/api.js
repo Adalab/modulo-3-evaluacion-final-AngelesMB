@@ -2,7 +2,7 @@ const callToApi = (URL, value) => {
   return fetch(URL + value)
     .then((response) => response.json())
     .then((data) => {
-      const cleanData = data.map((eachData) => {
+      const cleanData = data.map((eachData, index) => {
         return {
           name: eachData.name,
           alive: eachData.alive,
@@ -11,7 +11,7 @@ const callToApi = (URL, value) => {
           species: eachData.species,
           image: eachData.image,
           ancestry: eachData.ancestry,
-          id: Math.floor(Math.random() * 10000),
+          id: eachData.name.replaceAll(" ", "-") + "-" + index,
         };
       });
       return cleanData;

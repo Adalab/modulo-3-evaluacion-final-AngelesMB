@@ -14,7 +14,12 @@ const CharacterList = ({ isLoading, filteredData }) => {
       return filteredData.map((eachCharacter, index) => {
         return (
           <li key={index}>
-            <Link to={`/character/${eachCharacter.id}`}>
+            {/* house + id in order to re-fetch by house if necessary */}
+            <Link
+              to={`/character/${eachCharacter.house.toLowerCase()}/${
+                eachCharacter.id
+              }`}
+            >
               <CharacterCard eachCharacter={eachCharacter} />
             </Link>
           </li>

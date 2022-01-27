@@ -1,17 +1,14 @@
 import "../styles/App.scss";
 import { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import ls from "../services/localStorage";
 import callToApi from "../services/api";
-import CharacterFilter from "./Form/CharacterFilter";
-import HouseFilter from "./Form/HouseFilter";
-import AncestryFilter from "./Form/AncestryFilter";
 import CharacterList from "./List/CharacterList";
 import CharacterDetail from "./CharacterDetail";
 import ErrorDetail from "./ErrorDetail";
 import Header from "./Header";
-import Button from "./Form/Button";
 import Footer from "./Footer";
+import Form from "./Form/Form";
 
 // import PropTypes from 'prop-types';
 
@@ -50,6 +47,7 @@ function App() {
     }
   }, [houseFilter]);
 
+  // handle filter changes: set states
   const updateFilter = (obj) => {
     if (obj.key === "characterFilter") {
       setCharacterFilter(obj.value);
@@ -67,6 +65,7 @@ function App() {
     }
   };
 
+  // filter data
   const filteredData = data
     .filter((eachCharacter) => {
       return eachCharacter.name
@@ -82,6 +81,7 @@ function App() {
     })
     .sort((a, b) => a.name.localeCompare(b.name));
 
+  // get ancestries from data
   const getAncestries = () => {
     const ancestries = data.map((eachCharacter) => eachCharacter.ancestry);
     const uniqueAncestriesObj = new Set(ancestries);
@@ -89,65 +89,57 @@ function App() {
     return uniqueAncestriesArr;
   };
 
+  // reset
   const resetFilters = () => {
     setCharacterFilter("");
     setHouseFilter("gryffindor");
     setAncestryFilter([]);
   };
 
-  const renderCharacterDetail = ({ match }) => {
-    const routeId = match.params.characterId;
-    const foundCharacter = data.find(
-      (eachCharacter) => eachCharacter.id === parseInt(routeId)
-    );
-    // si es undefined, la ruta no existe, return componente de error
-    if (foundCharacter === undefined) {
-      return <ErrorDetail />;
-    } else {
-      return <CharacterDetail selectedCharacter={foundCharacter} />;
-    }
-  };
+  // get selected route info: character house + character id
+  const routeData = useRouteMatch("/character/:house/:characterId");
+  const routeId = routeData ? routeData.params.characterId : null;
+  const routeHouse = routeData ? routeData.params.house : houseFilter;
+  // if houses do not match, re-fetch to get selected house data
+  if (routeHouse !== houseFilter) {
+    setHouseFilter(routeHouse);
+  }
 
+  // render character detail component or error message
+  const renderCharacterDetail = () => {
+    // once the data matches the selected house, find selected character id
+    const foundCharacter = data.find(
+      (eachCharacter) => eachCharacter.id === routeId
+    );
+    const characterDetailHtml =
+      foundCharacter === undefined ? (
+        <ErrorDetail />
+      ) : (
+        <CharacterDetail selectedCharacter={foundCharacter} />
+      );
+    return characterDetailHtml;
+  };
+  
   return (
     <div>
       <Header />
       <main className="main">
-        {/* <Route exact path="/"> */}
-        <form
-          action=""
-          className="main__form"
-          onSubmit={(ev) => ev.preventDefault()}
-        >
-          <div className="main__form--name">
-            <CharacterFilter
-              characterFilter={characterFilter}
-              updateFilter={updateFilter}
-            />
-            <HouseFilter
-              houseFilter={houseFilter}
-              updateFilter={updateFilter}
-            />
-            <Button resetFilters={resetFilters} />
-          </div>
-          <div className="main__form--ancestry">
-            <AncestryFilter
-              getAncestries={getAncestries()}
-              updateFilter={updateFilter}
-              ancestryFilter={ancestryFilter}
-            />
-          </div>
-        </form>
+        <Form
+          characterFilter={characterFilter}
+          updateFilter={updateFilter}
+          houseFilter={houseFilter}
+          resetFilters={resetFilters}
+          getAncestries={getAncestries()}
+          ancestryFilter={ancestryFilter}
+        />
         <ul className="main__character--list">
           <CharacterList isLoading={isLoading} filteredData={filteredData} />
           <Footer />
         </ul>
-        {/* </Route> */}
         <Switch>
-          <Route
-            exact
-            path="/character/:characterId"
-            render={renderCharacterDetail}
-          ></Route>
+          <Route exact path="/character/:house/:characterId">
+            {renderCharacterDetail()}
+          </Route>
         </Switch>
       </main>
     </div>
