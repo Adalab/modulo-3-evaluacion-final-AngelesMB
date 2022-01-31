@@ -3,11 +3,13 @@ import CharacterFilter from "./CharacterFilter";
 import HouseFilter from "./HouseFilter";
 import AncestryFilter from "./AncestryFilter";
 import Button from "./Button";
+import StatusFilter from "./StatusFilter";
 
 const Form = ({
   characterFilter,
   updateFilter,
   houseFilter,
+  statusFilter,
   resetFilters,
   getAncestries,
   ancestryFilter,
@@ -32,6 +34,7 @@ const Form = ({
           updateFilter={updateFilter}
           ancestryFilter={ancestryFilter}
         />
+        <StatusFilter statusFilter={statusFilter} updateFilter={updateFilter} />
       </div>
     </form>
   );

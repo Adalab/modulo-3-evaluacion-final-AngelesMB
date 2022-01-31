@@ -22,6 +22,7 @@ function App() {
   const [ancestryFilter, setAncestryFilter] = useState(
     ls.get("ancestryFilter", [])
   );
+  const [statusFilter, setStatusFilter] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const URL = "https://hp-api.herokuapp.com/api/characters/house/";
@@ -51,6 +52,12 @@ function App() {
       setCharacterFilter(obj.value);
     } else if (obj.key === "houseFilter") {
       setHouseFilter(obj.value);
+    } else if (obj.key === "statusFilter") {
+      if (obj.value === "alive") {
+        setStatusFilter(true);
+      } else {
+        setStatusFilter(false);
+      }
     } else {
       if (ancestryFilter.includes(obj.value)) {
         const cleanFilteredAncestries = ancestryFilter.filter(
@@ -75,6 +82,13 @@ function App() {
         return eachCharacter;
       } else {
         return ancestryFilter.includes(eachCharacter.ancestry);
+      }
+    })
+    .filter((eachCharacter) => {
+      if (statusFilter) {
+        return eachCharacter.alive;
+      } else {
+        return !eachCharacter.alive;
       }
     })
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -126,6 +140,7 @@ function App() {
           characterFilter={characterFilter}
           updateFilter={updateFilter}
           houseFilter={houseFilter}
+          statusFilter={statusFilter}
           resetFilters={resetFilters}
           getAncestries={getAncestries()}
           ancestryFilter={ancestryFilter}
