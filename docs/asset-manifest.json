@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.8cbc2568.css",
-    "main.js": "./static/js/main.48da3286.js",
+    "main.js": "./static/js/main.538ad149.js",
     "static/media/hp-hufflepuff.png": "./static/media/hp-hufflepuff.996c6e473a6fe5805ba9.png",
     "static/media/hp-logo.png": "./static/media/hp-logo.3a478a53c282cbaed6a0.png",
     "static/media/hp-slytherin.png": "./static/media/hp-slytherin.885d67c265d208645a1d.png",
@@ -11,10 +11,10 @@
     "static/media/hp-loader.gif": "./static/media/hp-loader.c9fa0f18e550aed7a365.gif",
     "index.html": "./index.html",
     "main.8cbc2568.css.map": "./static/css/main.8cbc2568.css.map",
-    "main.48da3286.js.map": "./static/js/main.48da3286.js.map"
+    "main.538ad149.js.map": "./static/js/main.538ad149.js.map"
   },
   "entrypoints": [
     "static/css/main.8cbc2568.css",
-    "static/js/main.48da3286.js"
+    "static/js/main.538ad149.js"
   ]
 }
