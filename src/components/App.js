@@ -132,7 +132,6 @@ function App() {
         />
         <ul className="main__character--list">
           <CharacterList isLoading={isLoading} filteredData={filteredData} />
-          <Footer />
         </ul>
         <Switch>
           <Route exact path="/character/:house/:characterId">
@@ -140,6 +139,7 @@ function App() {
           </Route>
         </Switch>
       </main>
+      <Footer />
     </div>
   );
 }
