@@ -24,7 +24,7 @@ function App() {
   );
   const [isLoading, setIsLoading] = useState(false);
 
-  const URL = "https://hp-api.herokuapp.com/api/characters/house/";
+  const URL = "https://hp-api.onrender.com/api/characters/house/";
 
   // effect ls
   useEffect(() => {
